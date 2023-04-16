@@ -1,0 +1,97 @@
+<div>
+  <div *ngIf="showForm">
+    <app-edit-equipo
+      [rowInformation]="rowInformation"
+      [showForm]="showForm"
+      [showTable]="showTable"
+      >
+    </app-edit-equipo>
+  </div>
+
+  <div *ngIf="showTable">
+    <div class="filter-inputs">
+      <div>
+        <mat-form-field appearance="fill" class="input-width">
+          <mat-label>ID</mat-label>
+          <input type="number" matInput autocomplete="off" [(ngModel)]="id" (keyup)="searchId($event)">
+        </mat-form-field>
+      </div>
+
+      <div class="datepickers">
+        <mat-form-field appearance="fill">
+          <mat-label>Inicio</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            class="datepicker"
+            [(ngModel)]="initialDate"
+            (keyup)="searchInitialDate($event)"
+          >
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Final </mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker1"
+            [(ngModel)]="lastDate"
+            class="datepicker"
+            (keyup)="searchDatePicker($event)"
+          >
+          <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <table class="table">
+      <thead>
+      <tr class="header">
+        <th>ID</th>
+        <th>Nombre Equipo</th>
+        <th>Nacionalidad</th>
+        <th>Valor</th>
+        <th>Entrenador</th>
+        <th>Capacidad</th>
+        <th>Estadio</th>
+        <th>Sitio Web</th>
+        <th>Año de Fundación</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of dataTable" class="body">
+        <td>{{ item.id }}</td>
+        <td>{{ item.nombre }}</td>
+        <td>{{ item.nacionalidad }}</td>
+        <td>{{ item.valor ? item.valor : 0 }}</td>
+        <td>{{ item.entrenador }}</td>
+        <td>{{ item.capacidad }}</td>
+        <td>{{ item.estadio }}</td>
+        <td>{{ item.sitioWeb ? item.sitioWeb : 'No existe' }}</td>
+        <td>{{ formatDate(item.fundacion) }}</td>
+        <td>
+          <img
+            src="./assets/img/trash.svg"
+            alt="trash"
+            width="20"
+            class="icon"
+            (click)="item.id && deleteItem(item.id)"
+          >
+          <img
+            src="./assets/img/edit.svg"
+            alt="edit"
+            width="20"
+            class="icon"
+            (click)="getInformationRow(item)"
+          >
+        </td>
+      </tr>
+      <tr>
+        <td *ngIf="!dataTable.length" colspan="6">No se encuentran jugadores por el momento</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

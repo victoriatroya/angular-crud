@@ -1,0 +1,20 @@
+.dialog {
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.dialog-text {
+  font-size: 18px;
+  text-align: center;
+}
+
+.dialog-button {
+  display: flex;
+  justify-content: end;
+  margin-top: 30px;
+}

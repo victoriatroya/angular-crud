@@ -1,0 +1,20 @@
+<div class="body">
+  <div class="login">
+    <p class="title">Iniciar Sesion</p>
+
+    <img src="../../../assets/img/user.png" alt="img" class="img" width="50%">
+
+    <form [formGroup]="form" (ngSubmit)="logIn()">
+      <mat-form-field appearance="fill" class="input-width">
+        <mat-label>Usuario</mat-label>
+        <input type="text" matInput autocomplete="off" formControlName="user">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="input-width">
+        <mat-label>Contrasena</mat-label>
+        <input type="password" matInput autocomplete="off" formControlName="password">
+      </mat-form-field>
+
+      <button type="submit" mat-raised-button color="primary" class="button" [disabled]="form.invalid">Primary</button>
+    </form>
+  </div>
+</div>

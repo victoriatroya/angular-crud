@@ -1,0 +1,36 @@
+.table {
+  width: 100%;
+  border: 1px solid darkgreen;
+  max-height: 70px;
+}
+
+.header {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+
+}
+
+.header th {
+  padding: 10px 0;
+  color: darkgreen;
+}
+
+.body {
+  text-align: center;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.filter-inputs {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.datepickers {
+  display: flex;
+  gap: 15px
+}

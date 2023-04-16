@@ -1,0 +1,64 @@
+<div class="card">
+  <p class="title">Agregar un nuevo equipo</p>
+  <form [formGroup]="formData" (ngSubmit)="addEquipo()">
+    <div class="inputs">
+      <mat-form-field appearance="fill" class="input-width">
+        <mat-label>Nombre equipo</mat-label>
+        <input type="text" matInput autocomplete="off" formControlName="nombre">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="input-width">
+        <mat-label>Estadio</mat-label>
+        <input type="text" matInput autocomplete="off" formControlName="estadio">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="input-width">
+        <mat-label>Sitio web</mat-label>
+        <input type="text" matInput autocomplete="off" formControlName="sitioWeb">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="input-width">
+        <mat-label>Nacionalidad</mat-label>
+        <input type="text" matInput autocomplete="off" formControlName="nacionalidad">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fundación</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fundacion">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="input-width">
+        <mat-label>Entrenador</mat-label>
+        <input type="text" matInput autocomplete="off" formControlName="entrenador">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="input-width">
+        <mat-label>Capacidad</mat-label>
+        <input type="number" matInput autocomplete="off" formControlName="capacidad">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="input-width">
+        <mat-label>Valor</mat-label>
+        <input type="number" matInput autocomplete="off" formControlName="valor">
+      </mat-form-field>
+    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      class="button"
+      type="submit"
+      [disabled]="formData.invalid">
+      Agregar
+    </button>
+    <button
+      mat-stroked-button
+      class="button"
+      color="primary"
+      (click)="cancelForm()"
+    >
+      Cancelar
+    </button>
+  </form>
+</div>

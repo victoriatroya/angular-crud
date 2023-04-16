@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="container-button">
+    <button class="button" mat-raised-button color="primary" (click)="logOut()">Cerrar Sesión</button>
+  </div>
+  <p class="title">Equipos</p>
+  <div class="container-button">
+    <button class="button" mat-raised-button color="primary" routerLink="/dashboard/agregar-equipo">Agregar Equipo</button>
+  </div>
+
+  <div class="equipos-table">
+    <app-equipos></app-equipos>
+  </div>
+</div>
