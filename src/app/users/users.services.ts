@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import {Equipos} from "../../interfaces/equipos";
+import {Equipos, User} from "../../interfaces/equipos";
 
 @Injectable({
   providedIn: "root",
@@ -11,11 +11,11 @@ export class UsersService {
   BASE_URL= "https://wo-fifa.azurewebsites.net"
   constructor(private http: HttpClient) {}
 
-  login(data: any): Observable<any> {
+  login(data: User): Observable<any> {
     return this.http.post(`${this.BASE_URL}/login`, data);
   }
 
-  logout(data: any): Observable<any> {
+  logout(data: User): Observable<any> {
     return this.http.post(`${this.BASE_URL}/logout`, data);
   }
 
@@ -39,7 +39,7 @@ export class UsersService {
     return this.http.get(`${this.BASE_URL}/equipos/consultar/${id}`);
   }
 
-  searchDatepicker(initialDate: any, lastDate: any): Observable<any> {
+  searchDatepicker(initialDate: string, lastDate: string): Observable<any> {
     return this.http.get(`${this.BASE_URL}/equipos/consultar/${initialDate}/${lastDate}`);
   }
 }

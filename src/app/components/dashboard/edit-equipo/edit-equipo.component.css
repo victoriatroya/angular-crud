@@ -25,7 +25,13 @@
 }
 
 .input-width {
-  width: 400px;
+  width: 100%;
+}
+
+.button-cancel {
+  width: 100%;
+  max-width: 452px;
+  margin-top: 10px;
 }
 
 .input-container {

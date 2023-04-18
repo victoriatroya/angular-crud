@@ -1,20 +1,20 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import { UsersService } from "../../../users/users.services";
-import { Equipos } from "../../../../interfaces/equipos";
-import {Router} from "@angular/router";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import * as moment from "moment";
+import {ChangeDetectorRef, Component, OnChanges, OnInit} from '@angular/core';
+import { UsersService } from '../../../users/users.services';
+import { Equipos } from '../../../../interfaces/equipos';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-equipos',
   templateUrl: './equipos.component.html',
-  styleUrls: ['./equipos.component.css']
+  styleUrls: ['./equipos.component.css'],
 })
 export class EquiposComponent implements OnInit {
   dataTable: Equipos[] = [];
   showTable: boolean = true;
   showForm: boolean = true;
-  id: any;
+  id: null | number = null;
 
   initialDate: Date = new Date();
   lastDate: Date = new Date();
@@ -27,20 +27,18 @@ export class EquiposComponent implements OnInit {
     entrenador: '',
     capacidad: 0,
     valor: 0,
-    id: 0
-  }
+    id: 0,
+  };
   constructor(
     public userService: UsersService,
-    private router: Router,
-    private fb: FormBuilder,
-    private changeDetectorRef: ChangeDetectorRef
-  ) {
-  }
+  ) {}
   ngOnInit(): void {
-    this.getDataList()
-    this.showForm = false
-    console.log(this.datesFormat(this.initialDate))
+    this.loadInitData();
+  }
 
+  loadInitData(): void {
+    this.getDataList();
+    this.showForm = false;
   }
 
   getDataList() {
@@ -51,57 +49,51 @@ export class EquiposComponent implements OnInit {
 
   deleteItem(id: number) {
     this.userService.deleteEquipo(id).subscribe(() => {
-      this.ngOnInit();
+      this.loadInitData();
     });
-  };
+  }
 
   formatDate(date: Date): string {
     return new Date(date).toLocaleDateString('en-GB');
-  };
+  }
 
-  datesFormat(date: Date): string{
-    return moment(date).format('DD-MM-YYYY')
+  datesFormat(date: Date): string {
+    return moment(date).format('DD-MM-YYYY');
   }
 
   getInformationRow(item: Equipos) {
     this.showTable = false;
     this.showForm = true;
-    this.rowInformation = item;
+    this.rowInformation = {
+      ...item,
+      fundacion: new Date(item.fundacion)
+    };
   }
 
   searchId(e: any): any {
-    this.id = Number(e.target.value)
+    this.id = e.target.value;
 
     if (this.id === 0) {
-      this.ngOnInit();
+      this.loadInitData();
     }
 
-    this.userService.searchId(this.id).subscribe((data) => {
+    this.userService.searchId(Number(this.id)).subscribe((data) => {
       if (data) {
-        this.dataTable = [data]
+        this.dataTable = [data];
       } else {
-        this.dataTable
+        this.dataTable;
       }
     });
   }
 
-  searchInitialDate(e:any) {
+  searchInitialDate(e: any) {
     this.initialDate = e.target.value;
-
-    console.log(this.initialDate, 'iniral dsate')
   }
-  searchDatePicker(e: any) {
-    console.log('entro')
-    this.lastDate = e.target.value
-    console.log(this.lastDate, 'lastdate')
-
+  searchDatePicker() {
     this.userService.searchDatepicker(this.datesFormat(this.initialDate), this.datesFormat(this.lastDate)).subscribe((data) => {
       if (data) {
-        console.log(data, 'data')
-        this.dataTable = [data]
+        this.dataTable = data
       }
     });
   }
-
-
 }

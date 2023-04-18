@@ -1,55 +1,54 @@
 <div class="card">
   <p class="title">Editar un equipo</p>
 
-  <form (ngSubmit)="editEquipo()">
+  <form [formGroup]="team" (ngSubmit)="editEquipo()">
     <div class="inputs">
       <div class="input-container">
         <mat-form-field appearance="fill" class="input-width">
           <mat-label>Nombre equipo</mat-label>
-          <input type="text" matInput autocomplete="off" [value]="rowInformation.nombre">
+          <input type="text" matInput autocomplete="off" formControlName="nombre">
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="input-width">
           <mat-label>Estadio</mat-label>
-          <input type="text" matInput autocomplete="off" name="estadio" [value]="rowInformation.estadio">
+          <input type="text" matInput autocomplete="off" name="estadio" formControlName="estadio">
         </mat-form-field>
       </div>
 
       <div class="input-container">
         <mat-form-field appearance="fill" class="input-width">
           <mat-label>Sitio web</mat-label>
-          <input type="text" matInput autocomplete="off" formControlName="sitioWeb" [value]="rowInformation.sitioWeb">
+          <input type="text" matInput autocomplete="off" formControlName="sitioWeb">
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="input-width">
           <mat-label>Nacionalidad</mat-label>
-          <input type="text" matInput autocomplete="off" formControlName="nacionalidad" [value]="rowInformation.nacionalidad">
+          <input type="text" matInput autocomplete="off" formControlName="nacionalidad" >
         </mat-form-field>
       </div>
 
-      <div class="input-container">
         <mat-form-field appearance="fill">
           <mat-label>Fundación</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="fundacion" class="datepicker" [value]="rowInformation.fundacion">
+          <input matInput [matDatepicker]="picker" formControlName="fundacion" class="datepicker">
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="input-width">
           <mat-label>Entrenador</mat-label>
-          <input type="text" matInput autocomplete="off" formControlName="entrenador" [value]="rowInformation.entrenador">
+          <input type="text" matInput autocomplete="off" formControlName="entrenador" >
         </mat-form-field>
-      </div>
+
 
       <div class="input-container">
         <mat-form-field appearance="fill" class="input-width">
           <mat-label>Capacidad</mat-label>
-          <input type="number" matInput autocomplete="off" formControlName="capacidad" [value]="rowInformation.capacidad">
+          <input type="number" matInput autocomplete="off" formControlName="capacidad">
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="input-width">
           <mat-label>Valor</mat-label>
-          <input type="number" matInput autocomplete="off" formControlName="valor" [value]="rowInformation.valor">
+          <input type="number" matInput autocomplete="off" formControlName="valor">
         </mat-form-field>
       </div>
     </div>
@@ -57,11 +56,10 @@
   </form>
   <button
     mat-stroked-button
-    class="button"
+    class="button-cancel"
     color="primary"
     (click)="cancelForm()"
   >
     Cancelar
   </button>
 </div>
-

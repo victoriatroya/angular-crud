@@ -7,7 +7,6 @@
       >
     </app-edit-equipo>
   </div>
-
   <div *ngIf="showTable">
     <div class="filter-inputs">
       <div>
@@ -37,10 +36,9 @@
             [matDatepicker]="picker1"
             [(ngModel)]="lastDate"
             class="datepicker"
-            (keyup)="searchDatePicker($event)"
           >
           <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
+          <mat-datepicker (closed)="searchDatePicker()" #picker1></mat-datepicker>
         </mat-form-field>
       </div>
     </div>
@@ -93,5 +91,4 @@
       </tbody>
     </table>
   </div>
-
 </div>

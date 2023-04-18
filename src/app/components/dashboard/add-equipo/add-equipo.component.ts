@@ -59,9 +59,7 @@ export class AddEquipoComponent {
     });
   }
   addEquipo() {
-    console.log(this.formData.value, 'values')
     this.userService.createEquipo(this.formData.value).subscribe((data) => {
-      console.log(data)
       if (data) {
         this.openDialog('Se ha completado con éxito su solicitud')
 

@@ -1,7 +1,9 @@
 .table {
   width: 100%;
-  border: 1px solid darkgreen;
+  border: 1px solid #673ab7;
   max-height: 70px;
+  border-collapse: collapse;
+  border-radius: 10px;
 }
 
 .header {
@@ -11,9 +13,13 @@
 
 }
 
+.header {
+  background-color: #673ab7;
+}
+
 .header th {
   padding: 10px 0;
-  color: darkgreen;
+  color: white;
 }
 
 .body {
